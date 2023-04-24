@@ -2,7 +2,8 @@ const express = require("express")
 const { rmSync } = require("fs")
 
 const app = express()
-
+app.set("view engine", "ejs")
+app.set("views", "html")
 
 app.listen("3000")
 
