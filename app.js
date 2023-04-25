@@ -7,6 +7,8 @@ app.set("views", "html")
 
 app.listen("3000")
 
+app.use(express.static("public"))
+
 app.get("/", (req, res)=> {
     const blogs = [
         {title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
