@@ -4,6 +4,7 @@ const { rmSync } = require("fs")
 const mongoose = require("mongoose")
 const app = express()
 const db = "mongodb+srv://Alper:g4nAWgCNRuAAqFya@nodeblog.w7eaite.mongodb.net/test"
+const Blog = require("./models/blog")
 
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true}).then((result)=> app.listen("3000"), console.log("Successfully connected")).catch((error)=>console.log(error));
 
@@ -15,12 +16,15 @@ app.set("views", "html")
 app.use(express.static("public"))
 
 app.get("/", (req, res)=> {
-    const blogs = [
-        {title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
-        {title: 'Mario finds stars', snippet: 'Lorem ipsum dolor sit amet consectetur'},
-        {title: 'How to defeat bowser', snippet: 'Lorem ipsum dolor sit amet consectetur'},
-      ];
-    res.render("index", {title: "Home", blogs})
+    res.redirect("/blogs")
+})
+
+app.get("/blogs", (req, res)=> {
+    Blog.find().sort({ createdAt: -1 })
+    .then((result) => {
+        res.render("index", {title: "All Blogs", blogs: result})
+    }) .catch((error) => {console.log(error)
+  })
 })
 
 app.get("/about", (req, res)=> {
