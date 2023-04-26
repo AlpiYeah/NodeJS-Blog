@@ -1,11 +1,16 @@
+const { error } = require("console")
 const express = require("express")
 const { rmSync } = require("fs")
-
+const mongoose = require("mongoose")
 const app = express()
+const db = "mongodb+srv://Alper:g4nAWgCNRuAAqFya@nodeblog.w7eaite.mongodb.net/test"
+
+mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true}).then((result)=> app.listen("3000"), console.log("Successfully connected")).catch((error)=>console.log(error));
+
 app.set("view engine", "ejs")
 app.set("views", "html")
 
-app.listen("3000")
+
 
 app.use(express.static("public"))
 
