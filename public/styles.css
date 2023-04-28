@@ -87,3 +87,28 @@
       font-size: 1.2em;
       cursor: pointer;
     }
+    .blogs a {
+      display: block;
+      margin: 40px 0px;
+      padding-left: 30px;
+      padding: 8px;
+      border-left: 6px solid peachpuff;
+    }
+    .blogs a:hover h3 {
+      color: peachpuff;
+    }
+    .details {
+      position: relative;
+    }
+
+    .delete {
+      position: absolute;
+      top: 0;
+      right: 0;
+      border-radius: 50%;
+
+    }
+    .delete:hover {
+      cursor: pointer;
+      box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2)
+    }
