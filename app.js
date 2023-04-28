@@ -6,6 +6,7 @@ const app = express();
 const db =
   "mongodb+srv://Alper:g4nAWgCNRuAAqFya@nodeblog.w7eaite.mongodb.net/test";
 const Blog = require("./models/blog");
+const { render } = require("ejs");
 
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -45,6 +46,15 @@ app.post("/blogs", (req, res) => {
     .catch((err) => {
       console.log(err);
     });
+});
+
+app.get("/blogs/:id", (req, res) => {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then((result) => {
+      res.render("details", { blog: result, title: "Blog Details" });
+    })
+    .catch((err) => console.log(err));
 });
 
 app.get("/about", (req, res) => {
