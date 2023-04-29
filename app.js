@@ -7,7 +7,7 @@ const db =
   "mongodb+srv://Alper:g4nAWgCNRuAAqFya@nodeblog.w7eaite.mongodb.net/test";
 const { render } = require("ejs");
 const blogsRoute = require("./routes/blogsRoute");
-const blogController = require("./controller/blogController");
+const aboutRoute = require("./routes/aboutRoute");
 
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -24,15 +24,9 @@ app.get("/", (req, res) => {
   res.redirect("/blogs");
 });
 
+app.use("/about", aboutRoute);
+
 app.use("/blogs", blogsRoute);
-
-app.get("/about", (req, res) => {
-  res.render("about", { title: "About" });
-});
-
-app.get("/about-me", (req, res) => {
-  res.redirect("/about");
-});
 
 app.use((req, res) => {
   res.status(404).render("404", { title: "404: Not found" });
