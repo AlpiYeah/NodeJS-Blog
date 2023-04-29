@@ -7,6 +7,7 @@ const db =
   "mongodb+srv://Alper:g4nAWgCNRuAAqFya@nodeblog.w7eaite.mongodb.net/test";
 const { render } = require("ejs");
 const blogsRoute = require("./routes/blogsRoute");
+const blogController = require("./controller/blogController");
 
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -31,10 +32,6 @@ app.get("/about", (req, res) => {
 
 app.get("/about-me", (req, res) => {
   res.redirect("/about");
-});
-
-app.get("/create", (req, res) => {
-  res.render("create", { title: "Create a new Blog" });
 });
 
 app.use((req, res) => {
